@@ -54,6 +54,8 @@ a {
   outline-offset: 2px;
 }
 
+/* ---------- Container ---------- */
+
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -61,6 +63,7 @@ a {
 }
 
 /* ---------- Layout ---------- */
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -72,6 +75,7 @@ a {
 }
 
 /* ---------- Navbar ---------- */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -142,6 +146,7 @@ a {
 }
 
 /* ---------- Footer ---------- */
+
 .footer {
   border-top: 1px solid var(--color-line);
   padding: 32px 0;
@@ -194,6 +199,7 @@ a {
 }
 
 /* ---------- Hero ---------- */
+
 .hero {
   position: relative;
   flex: 1;
@@ -262,21 +268,23 @@ a {
   .hero-title {
     font-size: 72px;
   }
+
   .hero-description {
     font-size: 18px;
   }
 }
 
 /* ---------- Search bar ---------- */
+
 .search-bar-wrap {
-  flex: 1;              
-  min-width: 0;         
-  max-width: 720px;     
-  margin: 0;            
+  flex: 1;
+  min-width: 0;
+  max-width: 720px;
+  margin: 0;
 }
 
 .search-bar {
-  width: 100%;          
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -293,6 +301,7 @@ a {
 
 .search-icon {
   color: var(--color-muted);
+  flex-shrink: 0;
 }
 
 .search-input {
@@ -312,6 +321,7 @@ a {
 }
 
 /* ---------- Listing page ---------- */
+
 .listing-main {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -327,6 +337,69 @@ a {
 .listing-status.error {
   color: var(--color-velvet);
 }
+
+/* ---------- Listing Controls ---------- */
+
+/* Mobile: Search on top, sorting underneath */
+
+.listing-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar-wrap {
+  width: 100%;
+  max-width: none;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.sort-control select {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  border: 2px solid #8d1111;
+  background: #030b2e;
+  cursor: pointer;
+  color: #8c9bb8;
+  font-size: 0.95rem;
+}
+
+/* Tablet / Desktop */
+
+@media (min-width: 640px) {
+  .listing-controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .search-bar-wrap {
+    flex: 1;
+    min-width: 0;
+    max-width: 720px;
+  }
+
+  .sort-control {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .sort-control select {
+    flex: none;
+  }
+}
+
+/* ---------- Movie grid ---------- */
 
 .movie-grid {
   margin-top: 40px;
@@ -354,6 +427,7 @@ a {
 }
 
 /* ---------- Movie card ---------- */
+
 .movie-card {
   overflow: hidden;
   border-radius: var(--radius);
@@ -437,6 +511,7 @@ a {
 }
 
 /* ---------- Modal ---------- */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -547,32 +622,4 @@ a {
 
 .modal-close-btn:hover {
   transform: scale(1.05);
-}
-
-.listing-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-  
-}
-
-.sort-control {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.sort-control select {
-  padding: 0.5rem 0.75rem;
-  border-radius: 12px;
-  border: 2px solid #8d1111;
-  background: #030b2e;
-  cursor: pointer;
-  color: #8c9bb8;          
-  font-size: 0.95rem;
-
 }
