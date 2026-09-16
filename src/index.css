@@ -80,20 +80,23 @@ a {
   position: sticky;
   top: 0;
   z-index: 40;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 3px solid var(--color-line);
   background: rgba(25, 33, 51, 0.9);
   backdrop-filter: blur(6px);
 }
 
+/* Full-width navbar content */
 .navbar-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 16px 24px;
+  width: 100%;
+  margin: 0;
+  padding: 16px 32px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Left side */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -101,16 +104,17 @@ a {
 }
 
 .navbar-logo {
-  font-size: 24px;
+  font-size: 36px;
 }
 
 .navbar-title {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 36px;
   letter-spacing: 0.02em;
   color: var(--color-text);
 }
 
+/* Right side */
 .navbar-links {
   display: flex;
   align-items: center;
@@ -118,7 +122,7 @@ a {
 }
 
 .navbar-link {
-  font-size: 14px;
+  font-size: 20px;
   color: var(--color-muted);
   transition: color 0.2s ease;
 }
@@ -134,7 +138,7 @@ a {
 .navbar-cta {
   background: var(--color-gold);
   color: var(--color-bg);
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   padding: 8px 16px;
   border-radius: var(--radius);
@@ -148,8 +152,8 @@ a {
 /* ---------- Footer ---------- */
 
 .footer {
-  border-top: 1px solid var(--color-line);
-  padding: 32px 0;
+  border-top: 3px solid var(--color-line);
+  padding: 16px 0;
 }
 
 .footer-inner {
@@ -171,17 +175,17 @@ a {
 
 .footer-brand-name {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 0.02em;
 }
 
 .footer-copy {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--color-muted);
 }
 
 .footer-link {
-  font-size: 14px;
+  font-size: 20px;
   color: var(--color-muted);
   transition: color 0.2s ease;
 }
@@ -215,6 +219,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
+
   background: radial-gradient(
     circle at 50% 30%,
     rgba(241, 166, 27, 0.12),
@@ -252,7 +257,7 @@ a {
   margin-top: 32px;
   background: var(--color-gold);
   color: var(--color-bg);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.02em;
   padding: 12px 32px;
@@ -261,7 +266,7 @@ a {
 }
 
 .hero-cta:hover {
-  transform: scale(1.05);
+  transform: scale(1.15);
 }
 
 @media (min-width: 640px) {
@@ -288,10 +293,12 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
+
   border: 1px solid var(--color-line);
   background: var(--color-card);
   border-radius: var(--radius);
   padding: 12px 16px;
+
   transition: border-color 0.2s ease;
 }
 
@@ -340,8 +347,7 @@ a {
 
 /* ---------- Listing Controls ---------- */
 
-/* Mobile: Search on top, sorting underneath */
-
+/* Mobile */
 .listing-controls {
   display: flex;
   flex-direction: column;
@@ -500,6 +506,7 @@ a {
   font-weight: 600;
   padding: 8px 12px;
   border-radius: var(--radius);
+
   transition:
     background 0.2s ease,
     color 0.2s ease;
@@ -516,9 +523,11 @@ a {
   position: fixed;
   inset: 0;
   z-index: 50;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: rgba(0, 0, 0, 0.7);
   padding: 16px;
 }
@@ -529,6 +538,7 @@ a {
   width: 100%;
   max-width: 672px;
   overflow-y: auto;
+
   border-radius: var(--radius);
   border: 1px solid var(--color-line);
   background: var(--color-card);
@@ -539,15 +549,18 @@ a {
   top: 16px;
   right: 16px;
   z-index: 10;
+
   display: flex;
   height: 36px;
   width: 36px;
   align-items: center;
   justify-content: center;
+
   border-radius: 999px;
   border: none;
   background: rgba(15, 17, 21, 0.8);
   color: var(--color-text);
+
   transition: background 0.2s ease;
 }
 
@@ -622,4 +635,33 @@ a {
 
 .modal-close-btn:hover {
   transform: scale(1.05);
+}
+
+/* ---------- Mobile Navbar ---------- */
+
+@media (max-width: 639px) {
+  .navbar-inner {
+    padding: 12px 16px;
+  }
+
+  .navbar-logo {
+    font-size: 28px;
+  }
+
+  .navbar-title {
+    font-size: 28px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+  }
+
+  .navbar-link {
+    font-size: 16px;
+  }
+
+  .navbar-cta {
+    font-size: 16px;
+    padding: 7px 12px;
+  }
 }
