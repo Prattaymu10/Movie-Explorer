@@ -14,7 +14,7 @@ export default function Footer() {
           target="_blank"
           className="footer-link"
         >
-          GitHub
+         GitHub
         </a>
       </div>
     </footer>

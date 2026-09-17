@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { stripHtml } from '../api/tvmaze'
+import { useFavorites } from '../context/FavoritesContext'
 
 export default function MovieModal({ show, onClose }) {
+  const { isFavorite, toggleFavorite } = useFavorites()
+
   useEffect(() => {
     function handleKey(e) {
       if (e.key === 'Escape') onClose()
@@ -20,6 +23,7 @@ export default function MovieModal({ show, onClose }) {
   const rating = show.rating?.average ?? '—'
   const genres = show.genres?.length ? show.genres.join(', ') : '—'
   const network = show.network?.name || show.webChannel?.name || '—'
+  const favorited = isFavorite(show.id)
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -35,7 +39,17 @@ export default function MovieModal({ show, onClose }) {
         )}
 
         <div className="modal-body">
-          <h2 className="modal-title">{show.name}</h2>
+          <div className="modal-title-row">
+            <h2 className="modal-title">{show.name}</h2>
+            <button
+              className={`star-btn modal-star ${favorited ? 'active' : ''}`}
+              aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
+              aria-pressed={favorited}
+              onClick={() => toggleFavorite(show)}
+            >
+              {favorited ? '★' : '☆'}
+            </button>
+          </div>
           <div className="modal-meta">
             <span>⭐ Rating: {rating}</span>
             <span>📅 Release: {show.premiered || '—'}</span>

@@ -135,6 +135,26 @@ a {
   color: var(--color-gold);
 }
 
+.navbar-favorites {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--color-velvet);
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .navbar-cta {
   background: var(--color-gold);
   color: var(--color-bg);
@@ -281,13 +301,6 @@ a {
 
 /* ---------- Search bar ---------- */
 
-.search-bar-wrap {
-  flex: 1;
-  min-width: 0;
-  max-width: 720px;
-  margin: 0;
-}
-
 .search-bar {
   width: 100%;
   display: flex;
@@ -335,6 +348,13 @@ a {
   padding: 40px 24px;
 }
 
+.page-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  margin: 0 0 8px;
+}
+
 .listing-status {
   margin-top: 48px;
   text-align: center;
@@ -343,6 +363,11 @@ a {
 
 .listing-status.error {
   color: var(--color-velvet);
+}
+
+.inline-link {
+  color: var(--color-gold);
+  text-decoration: underline;
 }
 
 /* ---------- Listing Controls ---------- */
@@ -447,6 +472,7 @@ a {
 }
 
 .movie-card-poster {
+  position: relative;
   aspect-ratio: 2 / 3;
   width: 100%;
   overflow: hidden;
@@ -473,13 +499,47 @@ a {
   color: var(--color-muted);
 }
 
+/* ---------- Star / favorite button ---------- */
+
+.star-btn {
+  border: none;
+  background: rgba(15, 17, 21, 0.75);
+  color: var(--color-text);
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.15s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.star-btn:hover {
+  transform: scale(1.1);
+}
+
+.star-btn.active {
+  color: var(--color-gold);
+}
+
+.movie-card-poster .star-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
 .movie-card-body {
   padding: 16px;
 }
 
 .movie-card-title {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 22px;
   letter-spacing: 0.02em;
   margin: 0;
   white-space: nowrap;
@@ -492,7 +552,7 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--color-muted);
 }
 
@@ -502,7 +562,7 @@ a {
   border: 1px solid var(--color-gold);
   background: transparent;
   color: var(--color-gold);
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   padding: 8px 12px;
   border-radius: var(--radius);
@@ -590,11 +650,24 @@ a {
   padding: 24px;
 }
 
+.modal-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .modal-title {
   font-family: var(--font-display);
   font-size: 30px;
   letter-spacing: 0.02em;
   margin: 0;
+}
+
+.modal-star {
+  flex-shrink: 0;
+  background: var(--color-bg);
+  font-size: 20px;
 }
 
 .modal-meta {
@@ -660,8 +733,38 @@ a {
     font-size: 16px;
   }
 
+  .navbar-link:not(.navbar-favorites) {
+    display: none;
+  }
+
+  .navbar-favorites {
+    font-size: 0;
+  }
+
+  .navbar-favorites::before {
+    content: "★";
+    font-size: 22px;
+    color: var(--color-gold);
+  }
+
   .navbar-cta {
     font-size: 16px;
     padding: 7px 12px;
+  }
+
+  .star-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .modal-title-row {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .modal-star {
+    align-self: flex-end;
   }
 }
