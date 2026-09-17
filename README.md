@@ -1,43 +1,83 @@
 # 🎬 MovieExplorer
 
-A responsive movie/show explorer built with React, Vite, plain CSS, and the [TVMaze API](https://www.tvmaze.com/api).
+A React app for discovering movies and TV shows, built on the [TVmaze API](https://www.tvmaze.com/api). Browse, search, sort, and save your favorites — all stored locally in your browser.
 
 ## Features
-- **Home page** — navbar, hero banner with CTA into the listing page, footer.
-- **Movie Listing page** — live search (debounced) by title via `/search/shows`, falls back to the full catalog via `/shows` when the search box is empty, responsive card grid (1–4 columns).
-- **Details modal** — poster/backdrop, rating, release date, genres, network, and summary; closes via the ✕ button, the Close button, clicking the backdrop, or Escape.
-- Fully responsive: single column on mobile, up to 4 columns on desktop.
 
-## Tech stack
-- React 18 + React Router
-- Vite
-- Plain CSS (`src/index.css`) — theme colors/fonts live in `:root` custom properties at the top of the file for easy restyling
-- TVMaze REST API (no key required)
+- **Browse shows** — grid view of shows pulled from TVmaze
+- **Live search** — debounced search-as-you-type
+- **Sort** — by rating (high↔low) or name (A↔Z)
+- **Favorites** — star any show to save it; favorites persist via `localStorage` and get their own page
+- **Details modal** — click a show for a full overview: rating, release date, genres, network, and summary
+- **Client-side routing** — Home, Movies, and Favorites pages via `react-router-dom`
 
-## Getting started
+## Tech Stack
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [React Router](https://reactrouter.com/)
+- [TVmaze API](https://www.tvmaze.com/api) — no API key required
+- Plain CSS
+
+## Project Structure
+
+```
+├── api/
+│   └── tvmaze.js          # TVmaze API calls (fetch all shows, search, HTML stripping)
+├── components/
+│   ├── Footer.jsx
+│   ├── MovieCard.jsx      # Poster, rating, favorite toggle
+│   ├── MovieModal.jsx     # Show detail overlay
+│   ├── Navbar.jsx
+│   └── SearchBar.jsx
+├── context/
+│   └── FavoritesContext.jsx   # Global favorites state + localStorage sync
+├── pages/
+│   ├── Favorites.jsx
+│   ├── Home.jsx
+│   └── Listing.jsx         # Main browse/search/sort page
+├── App.jsx                 # Route definitions
+├── main.jsx                 # App entry point
+└── index.css
+```
+
+## Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+
+### Installation
+
 ```bash
+git clone https://github.com/Prattaymu10/movie-explorer.git
+cd movie-explorer
 npm install
+```
+
+### Run locally
+
+```bash
 npm run dev
 ```
-Then open the local URL Vite prints (default `http://localhost:5173`).
 
-## Build for production
+Then open the local URL Vite prints in your terminal (usually `http://localhost:5173`).
+
+### Build for production
+
 ```bash
 npm run build
-npm run preview
 ```
 
-## Deploying
-The `dist/` folder produced by `npm run build` can be deployed as-is to Vercel, Netlify, or GitHub Pages.
+## How It Works
 
-## Project structure
-```
-src/
-  api/tvmaze.js        # TVMaze fetch helpers
-  components/          # Navbar, Footer, SearchBar, MovieCard, MovieModal
-  pages/                # Home, Listing
-  App.jsx               # Routes
-  index.css             # All styles + theme tokens
-  main.jsx              # Entry point
-```
-"# Movie-Explorer" 
+- **Data fetching**: `Listing.jsx` fetches shows from TVmaze on load, and re-queries the `/search/shows` endpoint (debounced 350ms) whenever the search field changes.
+- **Sorting**: sort order is applied client-side over whichever list (all shows or search results) is currently active.
+- **Favorites**: `FavoritesContext` wraps the app and exposes `isFavorite`/`toggleFavorite`, backed by `localStorage` under the key `movie-explorer:favorites`.
+
+## Credits
+
+Show data and images provided by [TVmaze](https://www.tvmaze.com/).
+
+## License
+
+MIT
