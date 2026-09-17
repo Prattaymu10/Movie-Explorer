@@ -23,11 +23,11 @@ A React app for discovering movies and TV shows, built on the [TVmaze API](https
 
 ```
 ├── api/
-│   └── tvmaze.js          # TVmaze API calls (fetch all shows, search, HTML stripping)
+│   └── tvmaze.js          # TVmaze API calls (fetch all shows, search)
 ├── components/
 │   ├── Footer.jsx
-│   ├── MovieCard.jsx      # Poster, rating, favorite toggle
-│   ├── MovieModal.jsx     # Show detail overlay
+│   ├── MovieCard.jsx      
+│   ├── MovieModal.jsx     
 │   ├── Navbar.jsx
 │   └── SearchBar.jsx
 ├── context/
@@ -35,8 +35,8 @@ A React app for discovering movies and TV shows, built on the [TVmaze API](https
 ├── pages/
 │   ├── Favorites.jsx
 │   ├── Home.jsx
-│   └── Listing.jsx         # Main browse/search/sort page
-├── App.jsx                 # Route definitions
+│   └── Listing.jsx         
+├── App.jsx                  # Route definitions
 ├── main.jsx                 # App entry point
 └── index.css
 ```
@@ -67,6 +67,8 @@ Then open the local URL Vite prints in your terminal (usually `http://localhost:
 ```bash
 npm run build
 ```
+## Live link also available 
+https://movie-explorer-chi-rosy.vercel.app/
 
 ## How It Works
 
